@@ -63,6 +63,9 @@
 		<spring-cloud-commons.version>2.1.0.BUILD-SNAPSHOT</spring-cloud-commons.version>
 		<spring-cloud-netflix.version>2.1.0.BUILD-SNAPSHOT</spring-cloud-netflix.version>
 
+		<kubernetes-client.version>3.1.10</kubernetes-client.version>
+		<mockwebserver.version>0.1.0</mockwebserver.version>
+
 		<!-- Maven Plugin Versions -->
 		<maven-compiler-plugin.version>3.5</maven-compiler-plugin.version>
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
@@ -76,7 +79,7 @@
 	</properties>
 
 	<modules>
-		<!--<module>spring-cloud-kubernetes-dependencies</module>-->
+		<module>spring-cloud-kubernetes-dependencies</module>
 		<module>spring-cloud-kubernetes-core</module>
 		<module>spring-cloud-kubernetes-config</module>
 		<module>spring-cloud-kubernetes-discovery</module>
@@ -91,14 +94,57 @@
 
 	<dependencyManagement>
 		<dependencies>
-			
+
+			<!-- Own dependencies -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-kubernetes-dependencies</artifactId>
+				<artifactId>spring-cloud-kubernetes-core</artifactId>
 				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-kubernetes-config</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-kubernetes-discovery</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-kubernetes-ribbon</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>io.fabric8</groupId>
+				<artifactId>kubernetes-client-bom</artifactId>
+				<version>${kubernetes-client.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+
+			<!-- Other deps -->
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-all</artifactId>
+				<version>${groovy.version}</version>
+			</dependency>
+
+			<!--<dependency>-->
+				<!--<groupId>org.springframework.cloud</groupId>-->
+				<!--<artifactId>spring-cloud-kubernetes-dependencies</artifactId>-->
+				<!--<version>${project.version}</version>-->
+				<!--<type>pom</type>-->
+				<!--<scope>import</scope>-->
+			<!--</dependency>-->
 
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -128,6 +174,41 @@
 				<artifactId>spock-spring</artifactId>
 				<version>${spock-spring.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.fabric8</groupId>
+				<artifactId>kubernetes-client</artifactId>
+				<version>${kubernetes-client.version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-databind</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>io.fabric8</groupId>
+				<artifactId>mockwebserver</artifactId>
+				<version>${mockwebserver.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-databind</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-core</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
