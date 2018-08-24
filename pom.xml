@@ -76,7 +76,7 @@
 	</properties>
 
 	<modules>
-		<module>spring-cloud-kubernetes-dependencies</module>
+		<!--<module>spring-cloud-kubernetes-dependencies</module>-->
 		<module>spring-cloud-kubernetes-core</module>
 		<module>spring-cloud-kubernetes-config</module>
 		<module>spring-cloud-kubernetes-discovery</module>
