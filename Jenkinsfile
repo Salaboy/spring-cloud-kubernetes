@@ -54,6 +54,11 @@ pipeline {
             sh 'mvn clean deploy'
 
             sh 'export VERSION=`cat VERSION`'
+            sh "git config --global credential.helper store"
+
+            sh "jx step git credentials"
+            sh "updatebot push"
+            sh "updatebot update"
 
           }
         }
