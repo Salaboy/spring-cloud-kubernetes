@@ -22,11 +22,11 @@
 	<parent>
 		<groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-kubernetes</artifactId>
-                <version>1.0.0.BUILD-SNAPSHOT</version>
+                <version>0.0.10</version>
 		<!--<relativePath/>-->
 	</parent>
 	<artifactId>spring-cloud-kubernetes-dependencies</artifactId>
-	<version>1.0.0.BUILD-SNAPSHOT</version>
+	<version>0.0.10</version>
 	<packaging>pom</packaging>
 	<name>Spring Cloud Kubernetes :: Dependencies</name>
 	<description>Spring Cloud Kubernetes Dependencies</description>
